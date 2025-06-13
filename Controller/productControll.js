@@ -46,3 +46,23 @@ export async function getProducts(req,res){
     }
     
  }
+
+ export async function deleteProduct(req,res){
+    if(!isAdmin(req)){
+        return res.json({message:"Access denied (delect). Admins Only."})
+    }
+
+    try{
+        const prodcutId = req.params.prodcutId
+
+        await product.deleteOne({
+            prodcutId : prodcutId
+        })
+
+        res.json({message : "prodect deleted successfully"})
+    }catch(error){
+        console.error("Error delecting product",error)
+        res.status(500).json({message: "Feild to delete product"})
+    }
+
+ } 
