@@ -23,6 +23,7 @@ app.use(
     (req,res,next)=>{//req,res and next function
         console.log("Request Recivied")
         const tokenRead = req.header("Authorization")//read https request authorization
+        console.log(tokenRead)
         if(tokenRead != null){
              const token = tokenRead.replace("Bearer ","") //remove bearer head
              console.log(token)
