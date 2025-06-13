@@ -47,6 +47,7 @@ export async function getProducts(req,res){
     
  }
 
+ //delete product
  export async function deleteProduct(req,res){
     if(!isAdmin(req)){
         return res.json({message:"Access denied (delect). Admins Only."})
@@ -66,3 +67,30 @@ export async function getProducts(req,res){
     }
 
  } 
+
+ //update prodcut
+ export async function updateProduct(req,res) {
+    if(!isAdmin(req)){
+        return res.status(403).json({message : "Access deny (update) Admin have only access"})
+    }
+
+    //not to change product ID when product update
+    const data = req.body
+    data.prodcutId = productID
+
+    try{
+        await product.updateOne(
+            {
+                productID : prodcutId //find product
+            },
+            data
+        )
+    }catch(error){
+         console.error("Error delecting product",error)
+        res.status(500).json({message: "Feild to update product"})
+        }
+ 
+ }
+
+ //get product information
+ 
