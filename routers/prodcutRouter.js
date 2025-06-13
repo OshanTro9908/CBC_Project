@@ -1,5 +1,5 @@
 import express from "express";
-import { createprodecut, deleteProduct, getProducts, updateProduct } from "../Controller/productControll.js";
+import { createprodecut, deleteProduct, getProdcutInfo, getProducts, updateProduct } from "../Controller/productControll.js";
 
 const prodcutRouter = express.Router()
 
@@ -12,5 +12,6 @@ prodcutRouter.delete("/:productId",deleteProduct)
 //pls use like this featuers only above
 
 prodcutRouter.put("/:productID",updateProduct)
+prodcutRouter.get("/:productID",getProdcutInfo)
 
 export default prodcutRouter

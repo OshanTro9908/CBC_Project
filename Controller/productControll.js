@@ -92,5 +92,30 @@ export async function getProducts(req,res){
  
  }
 
- //get product information
- 
+ //get one product information
+ export async function getProdcutInfo(req,res) {
+    try{
+        //serach prodcut ID
+        const prodcutId = req.params.prodcutId
+        //serach product
+        const prodcut = await prodcut.findOne({prodcutId:prodcutId})
+
+        if(product == null){
+            return res.status(404).json({message : "Product is not found"})
+        }
+
+        //So admin can access every product
+        if(isAdmin(req)) {
+            res.json(prodcut)
+        }else{
+            if(prodcut.isAvailble){
+                res.json(prodcut)
+            }else{
+                res.json({message : "Product isnot availble now"})
+            }
+        }
+    }catch(error){
+         console.error("Error delecting product",error)
+        res.status(500).json({message: "Feild to get product info"})
+    }
+ }
