@@ -6,7 +6,9 @@ import Student from "./models/student.js";
 import studetRouter from "./routers/studentRouter.js";
 import userRouter from "./routers/userRouter.js";
 import jwt from "jsonwebtoken";
+import prodcutRouter from "./routers/prodcutRouter.js";
 
+ 
 //call express fuction for variable and use const cmd because of this veriable is consatnce
 const app = express();
 
@@ -54,6 +56,7 @@ mongoose.connect(connectionString).then(
 //routers connect
 app.use("/students",studetRouter)
 app.use("/users", userRouter)
+app.use("/product", prodcutRouter)
 
 //programe runing code
 app.listen(5000 , ()=>{
