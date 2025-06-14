@@ -7,13 +7,15 @@ import studetRouter from "./routers/studentRouter.js";
 import userRouter from "./routers/userRouter.js";
 import jwt from "jsonwebtoken";
 import prodcutRouter from "./routers/prodcutRouter.js";
+import dotenv from "dotenv"
 
- 
+//load .env file variable
+dotenv.config()
 //call express fuction for variable and use const cmd because of this veriable is consatnce
 const app = express();
 
 //call database location and username and password
-const connectionString = "mongodb+srv://admin:123@cluster0.hufzvij.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const connectionString = process.env.MONGO_URL
 
 //using bodypasser for clear reqesut body. use cmd use for middeleware
 app.use(bodyParser.json())
@@ -27,7 +29,7 @@ app.use(
         if(tokenRead != null){
              const token = tokenRead.replace("Bearer ","") //remove bearer head
              console.log(token)
-            jwt.verify(token,"cbc-6503",
+            jwt.verify(token,process.env.JWT_SECRET,
                 (err,decoded)=>{//if erroe come into error and decode come to decode
                     console.log(decoded)
                     if(decoded == null){
