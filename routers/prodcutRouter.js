@@ -7,11 +7,11 @@ prodcutRouter.post("/", createprodecut)
 prodcutRouter.get("/",getProducts)
 
 //delect request
-prodcutRouter.delete("/:productId",deleteProduct)
+prodcutRouter.delete("/api/:productId",deleteProduct)
 //we don't want to use jeson file when we uses this functions, localhost/5000/:productID 
 //pls use like this featuers only above
 
-prodcutRouter.put("/:productID",updateProduct)
-prodcutRouter.get("/:productID",getProdcutInfo)
+prodcutRouter.put("/api/:productID",updateProduct)
+prodcutRouter.get("/api/:productID",getProdcutInfo)
 
 export default prodcutRouter
