@@ -8,11 +8,15 @@ import userRouter from "./routers/userRouter.js";
 import jwt from "jsonwebtoken";
 import prodcutRouter from "./routers/prodcutRouter.js";
 import dotenv from "dotenv"
+import cors from "cors"
 
 //load .env file variable
 dotenv.config()
 //call express fuction for variable and use const cmd because of this veriable is consatnce
 const app = express();
+
+//use for cors for requset from other server
+app.use(cors())
 
 //call database location and username and password
 const connectionString = process.env.MONGO_URL
